@@ -1,3 +1,21 @@
-<p>
-  details-page works!
-</p>
+<section class="section">
+  <ng-container *ngIf="customerData">
+    <div class="columns">
+      <div class="column">
+        <h1 class="title">Customer details</h1>
+
+        <cm-customer-info [customer]="customerData"></cm-customer-info>
+      </div>
+      <div class="column is-one-third">
+        <h1 class="title">Update customer</h1>
+
+        <cm-customer-information-form-container
+          [customer]="customerData"
+          (customerSaved)="updateCustomer($event.name, $event.email, $event.address)"
+        ></cm-customer-information-form-container>
+      </div>
+    </div>
+  </ng-container>
+
+  <a class="button is-primary" routerLink="">Back to main page</a>
+</section>

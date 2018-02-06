@@ -1,0 +1,8 @@
+<cm-customer-information-form
+  [name]="name"
+  [email]="email"
+  [address]="address"
+  [invalidAddress]="invalidAddress"
+  [errorMessage]="errorMessage"
+  (formSubmitted)="onFormSubmit($event.name, $event.email, $event.address)"
+></cm-customer-information-form>

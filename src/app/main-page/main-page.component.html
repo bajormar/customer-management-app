@@ -1,8 +1,21 @@
-<div>
-  <div>
-    <cm-registration-form></cm-registration-form>
+<section class="section">
+  <div class="columns">
+    <div class="column is-one-third">
+      <h1 class="title">Create customer</h1>
+
+      <cm-customer-information-form-container
+        (customerSaved)="saveCustomer($event.name, $event.email, $event.address)"
+      ></cm-customer-information-form-container>
+    </div>
+    <div class="column">
+      <h1 class="title">Customers list</h1>
+
+      <cm-customers-list
+        [customers]="customers"
+        [hasMore]="hasMore"
+        (deleteCustomerClicked)="deleteCustomer($event)"
+        (loadMoreClicked)="loadMore()"
+      ></cm-customers-list>
+    </div>
   </div>
-  <div>
-    <cm-customers-list></cm-customers-list>
-  </div>
-</div>
+</section>

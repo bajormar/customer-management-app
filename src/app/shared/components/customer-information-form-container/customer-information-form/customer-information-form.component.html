@@ -1,0 +1,59 @@
+<form (ngSubmit)="form.valid && formSubmitted.emit({name: name, email: email, address: address})" #form="ngForm">
+  <div class="field">
+    <label for="name-input" class="label">Full name</label>
+    <div class="control">
+      <input id="name-input" name="name-input" type="text" class="input" [(ngModel)]="name" #nameField="ngModel"
+             [class.is-danger]="form.submitted && nameField.invalid" required maxlength="500">
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="email-input" class="label">Email</label>
+    <div class="control">
+      <input id="email-input" name="email-input" type="text" class="input" [(ngModel)]="email" #emailField="ngModel"
+             [class.is-danger]="form.submitted && emailField.invalid" required maxlength="500">
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="city-input" class="label">City</label>
+    <div class="control">
+      <input id="city-input" name="city-input" type="text" class="input" [(ngModel)]="address.city" #cityField="ngModel"
+             [class.is-danger]="form.submitted && cityField.invalid || invalidAddress" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="street-input" class="label">Street</label>
+    <div class="control">
+      <input id="street-input" name="street-input" type="text" class="input" [(ngModel)]="address.street" #streetField="ngModel"
+             [class.is-danger]="form.submitted && streetField.invalid || invalidAddress" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="house-number-input" class="label">House number</label>
+    <div class="control">
+      <input id="house-number-input" name="house-number-input" class="input" [(ngModel)]="address.houseNumber"
+             #houseNumberField="ngModel" [class.is-danger]="form.submitted && houseNumberField.invalid || invalidAddress" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="zip-code-input" class="label">Zip code</label>
+    <div class="control">
+      <input id="zip-code-input" name="zip-code-input" type="text" class="input" [(ngModel)]="address.zipCode" #zipCodeField="ngModel"
+             [class.is-danger]="form.submitted && zipCodeField.invalid || invalidAddress" required>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <button type="submit" class="button is-primary" data-test-id="SaveButton">Save</button>
+    </div>
+  </div>
+
+  <div class="notification is-danger" *ngIf="form.submitted && form.invalid">Fill in required fields</div>
+  <div class="notification is-danger" *ngIf="errorMessage" data-test-id="ErrorMessage">{{errorMessage}}</div>
+
+</form>

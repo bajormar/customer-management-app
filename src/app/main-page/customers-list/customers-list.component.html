@@ -1,3 +1,36 @@
-<p>
-  customers-list works!
-</p>
+<div class="list">
+  <div class="list-header">
+    <div class="columns">
+      <div class="column">Name</div>
+      <div class="column">Email</div>
+      <div class="column">Address</div>
+      <div class="column is-narrow" style="width: 150px">Actions</div>
+    </div>
+  </div>
+  <div class="list-item" *ngFor="let customer of customers; trackBy: trackByCustomerId" data-test-id="ListItem">
+    <div class="columns">
+      <div class="column">{{customer.name}}</div>
+      <div class="column">{{customer.email}}</div>
+      <div class="column">{{customer.address | address}}</div>
+      <div class="column is-narrow" style="width: 150px">
+        <div class="columns is-variable is-1">
+          <div class="column">
+            <a class="button is-info is-small" [routerLink]="['/', 'customer', customer.id]" data-test-id="OpenDetailsLink">Open</a>
+          </div>
+          <div class="column">
+            <button class="button is-danger is-small"
+                    (click)="deleteCustomerClicked.emit(customer.id)"
+                    data-test-id="DeleteButton">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<button class="button is-primary load-more"
+        *ngIf="hasMore"
+        (click)="loadMoreClicked.emit()"
+        data-test-id="LoadMoreButton">Load more</button>
